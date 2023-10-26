@@ -7,7 +7,7 @@
 a {
   text-decoration: none;
 }
-
+/* Navigation Bar*/
 .header {
   position: fixed;
   height: 80px;
@@ -58,7 +58,7 @@ a {
 .button:active {
   transform: scale(0.98);
 }
-
+/* Home */
 .home {
   position: relative;
   height: 100vh;

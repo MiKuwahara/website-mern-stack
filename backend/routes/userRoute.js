@@ -18,6 +18,15 @@ router.post("/", async (request, response) => {
             });
         };
 
+        /* Check for email duplicacy
+        const isEmailExist = await User.findOne({email: request.body.email});
+        if(isEmailExist)
+        {
+            return response.status(400).send({
+                message: "Email already exist."
+            });
+        };
+        */ 
         // Otherwise create user account
         const newUser = {
             email: request.body.email,
