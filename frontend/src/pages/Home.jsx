@@ -1,17 +1,38 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar.jsx';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 const Home = () => {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
+    const navigate = useNavigate();
 
     const handleSaveBook = () => {
 
+        const data = {
+            email: email,
+            password1: password1,
+        };
 
-
+        axios
+            .post("http://localhost:5555/user/login", data)
+            .then((result) => {
+                console.log("From home");
+                console.log(result);
+                if(result.data === "Success"){
+                    navigate("/user");
+                }else{
+                    alert(result.data);
+                    {/*navigate("/users/account")*/ }
+                }
+               
+            })
+            .catch((error) => {
+                alert("An error happend. Please check console.");
+                console.log(error);
+            });
     };
 
 

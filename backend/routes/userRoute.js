@@ -43,6 +43,42 @@ router.post("/", async (request, response) => {
     }
 });
 
+
+// route for Creating a new User
+router.post("/login", async (request, response) => {
+    try {
+        console.log("From route");
+        // Please provide all info
+        if(
+            !request.body.email ||
+            !request.body.password1
+        ){
+            return response.status(400).send({
+                message: "Send all required fields: email, password1"
+            });
+        };
+
+        const {email, password1} = request.body;
+        await User.findOne({email: email}) 
+        .then(user => {
+            if(user) {
+                if(user.password1 === password1){
+                    response.json("Success");
+                }else{
+                    response.json("The password is incorrect");
+                }
+            }else {
+                response.json("No record existed.");
+            }
+        })
+        
+
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
 // Route for Getting ALL Users from the database
 router.get("/", async (request, response) => {
     try {

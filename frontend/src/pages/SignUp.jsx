@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar.jsx';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -8,6 +8,7 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
+    const navigate = useNavigate();
 
     const handleSaveBook = () => {
 
@@ -28,8 +29,8 @@ const SignUp = () => {
         axios
             .post("http://localhost:5555/user", data)
             .then(() => {
-                alert("User Account successfully created!");
-                {/*navigate("/users/account")*/ }
+                //console.log("User Account successfully created!");
+                navigate("/user");
             })
             .catch((error) => {
                 alert("An error happend. Please check console.");

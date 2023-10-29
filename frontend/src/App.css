@@ -68,6 +68,17 @@ a {
   background-position: center;
 }
 
+/* User */
+.user {
+  position:absolute;
+  height: 80%;
+  width: 90%;
+  top: 100px;
+  left: 80px;
+  background-color: rgb(191, 191, 211);
+  opacity: 0.5;
+}
+
 .form_container {
   position: fixed;
   max-width: 320px;
@@ -117,4 +128,6 @@ a {
   text-align: center;
   margin-top: 15px;
 }
+
+
 
