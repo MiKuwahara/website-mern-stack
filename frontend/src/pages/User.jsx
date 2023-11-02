@@ -43,7 +43,9 @@ const User = () => {
         <div>
             <NavBar />
             <div className="home">
-               <div className="user"></div>
+               <div className="user">
+                <h1>Welcome!</h1>
+               </div>
             </div>
         </div>
     )

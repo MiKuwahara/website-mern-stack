@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <header className="header">
       <nav className="nav">
-        <a href="#" class="nav_logo">CodingLab</a>
+        <a href="#" class="nav_logo">MERN</a>
 
         <ul class="nav_items">
           <li class="nav_item">

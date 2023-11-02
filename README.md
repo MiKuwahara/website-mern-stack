@@ -66,6 +66,20 @@ Click the link in the terminal to see the project on the web browser.
 ### Database
 * MongoDB
 
+## Screenshots of this project
+
+Register page
+![Register page](./Signup.png)
+
+User's credentials are created and recorded in the database
+![Postman](./UserData.png)
+
+Login page
+![Login page](./Login.png)
+
+After successful registration or login, user will be redirected to the User page
+![User page](./UserPage.png)
+
 ## Acknowledgments
 
 * The frontend was inspired and tutored from CodingLab - Create Website with Login & Registration Form in HTML CSS & JavaScript: https://www.youtube.com/watch?v=etsPyHLON7g.

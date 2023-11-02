@@ -78,6 +78,10 @@ a {
   background-color: rgb(191, 191, 211);
   opacity: 0.5;
 }
+.user h1{
+  text-align: center;
+  margin-top: 20px;
+}
 
 .form_container {
   position: fixed;
