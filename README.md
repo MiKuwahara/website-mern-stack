@@ -4,9 +4,9 @@ As the name suggested, the website-mern-stack is simply a website built with Mon
 
 The purpose of this application is mainly to get our hands on the MERN technologies and how to use them to develop a full-stack application. In this case, a website.
 
-## Setup / Installation
+## Setup and Installation
 
-### 1. Prerequisites
+### Prerequisites
 
 Please install the following if you have not already:
 
@@ -15,28 +15,27 @@ Please install the following if you have not already:
 * MongoDB account
 * Visual Studio Code
 
-### 2. Cloning the repository
+### Cloning the repository
 
-* Click the "Code" (green) button and copy the HTTPS URL
-* Then navigate to your terminal and type the following, replacing the URL with your copied one
+Click the "Code" (green) button and copy the HTTPS URL. Then navigate to your terminal and type the following, replacing the URL with your copied one.
 
 ```sh
 $ git clone https://github.com/<"username">/<"repo-name">.git
 ```
 
-### 3. Navigating to the project directory
+### Navigating to the project directory
 
 ```sh
 $ cd <repo-name>
 ```
 
-### 4. Opening code in VS Code
+### Opening code in VS Code
 
 ```sh
 $ code .
 ```
 
-### 5. Running the backend
+### Running the backend
 In the VS Code, open a terminal. Do the following steps to run the server:
 
 ```sh
@@ -45,7 +44,7 @@ $ npm i
 npm run dev
 ```
 
-### 6. Running the frontend
+### Running the frontend
 Open another terminal. Do the following steps to run the client:
 
 ```sh
@@ -56,17 +55,27 @@ npm run dev
 
 Click the link in the terminal to see the project on the web browser.
 
-## Built with
+## Technologies Used
 
-### Frontend
+Frontend
 * React.JS
-### Backend
+* JavaScript
+* HTML/CSS
+* Axios
+* React-Router-Dom
+
+Backend
 * Express.JS
 * Node.js
-### Database
+* Mongoose
+* Cors
+* Nodemon
+* Postman
+
+Database
 * MongoDB
 
-## Screenshots of this project
+## Screenshots of This Project
 
 Register page
 ![Register page](./Signup.png)
