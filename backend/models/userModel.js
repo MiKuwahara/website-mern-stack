@@ -4,7 +4,8 @@ const userSchema = mongoose.Schema(
     {
         email: {
             type: String,
-            required: true,
+            required: [true, "Please add an email"],
+            unique: true
         },
         password1: {
             type: String,

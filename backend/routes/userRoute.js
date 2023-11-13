@@ -1,8 +1,14 @@
 import express from "express";
 import { User } from "../models/userModel.js";
+import {registerUser, loginUser} from "../controllers/userController.js"
+//import loginUser from "../controllers/userController.js"
 
 const router = express.Router();
 
+router.post("/login", loginUser);
+router.post("/", registerUser);
+
+/*
 // route for Creating a new User
 router.post("/", async (request, response) => {
     try {
@@ -18,15 +24,15 @@ router.post("/", async (request, response) => {
             });
         };
 
-        /* Check for email duplicacy
-        const isEmailExist = await User.findOne({email: request.body.email});
-        if(isEmailExist)
-        {
-            return response.status(400).send({
-                message: "Email already exist."
-            });
-        };
-        */ 
+        // Check for email duplicacy
+        //const isEmailExist = await User.findOne({email: request.body.email});
+        //if(isEmailExist)
+        //{
+        //    return response.status(400).send({
+        //        message: "Email already exist."
+        //    });
+        //};
+        // 
         // Otherwise create user account
         const newUser = {
             email: request.body.email,
@@ -79,6 +85,7 @@ router.post("/login", async (request, response) => {
     }
 });
 
+*/
 // Route for Getting ALL Users from the database
 router.get("/", async (request, response) => {
     try {
