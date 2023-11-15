@@ -2,6 +2,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { User } from "../models/userModel.js";
+import { JWT_SECRET } from "../config.js";
 
 
 //  @desc       Authenticate a user
@@ -41,7 +42,11 @@ const registerUser = async (request, response) => {
 
         if(user)
         {
-            response.status(201).send(user);
+            response.status(201).json({
+                _id: user.id,
+                email: user.email,
+                token: generateToken(user._id)
+            });
         }else{
             response.status(400)
             throw new Error("Invalid user data")
@@ -64,10 +69,15 @@ const loginUser = async (request, response) => {
         // Check for user email
         const user = await User.findOne({email});
 
+        // AUTHENTICATE
         // if user exists and password sent is the same as in the database
         // then login
         if(user && (await bcrypt.compare(password1, user.password1))){
-            response.send(user)
+            response.status(201).json({
+                _id: user.id,
+                email: user.email,
+                token: generateToken(user._id)
+            });
         }else{
             response.status(400)
             throw new Error("Invalid credentials!")
@@ -80,10 +90,37 @@ const loginUser = async (request, response) => {
     
 };
 
+//  @desc       Authenticate a user
+//  @route      POST 
+//  @access     Public
+const getMe = async (request, response) => {
+    try {
+       
+        //response.status(200).json({Message: "Hello, :)"});
+
+        const user = await User.findById(request.user.id);
+        response.status(200).send(user);
+
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+    
+};
+
+
+// Generate JWT
+const generateToken = (id) => {
+    return jwt.sign({id}, JWT_SECRET, {
+        expiresIn: "30d",
+    })
+}
+
 // You can only have one default export per file.
 // However, if you want to export more, then use
 // named exports which you declare without the "default"
 export  {
     registerUser,
-    loginUser
+    loginUser,
+    getMe
 };
