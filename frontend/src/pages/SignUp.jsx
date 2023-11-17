@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import {useSelector, useDispatch} from "react-redux"
 import NavBar from '../components/NavBar.jsx';
 import { Link, useNavigate } from "react-router-dom";
+import { register, reset} from "../features/auth/authSlice.js"
 import axios from "axios";
 
 
@@ -9,23 +11,45 @@ const SignUp = () => {
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+
+    // execute when any of the dependencies changes
+    useEffect(() => {
+        if(isError){
+            return alert(message);
+        }
+
+        if(isSuccess || user){
+            navigate("/");
+        }
+
+        dispatch(reset());
+
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const handleSaveBook = () => {
-
+        // prevent from clearing out inputs on form?
+        //e.preventDefault()
 
         // Password are case sensitive
         if (password1.localeCompare(password2) != 0) {
             return alert("Passwords are not the same!");
 
+        }else{
+            const data = {
+                email: email,
+                password1: password1,
+                password2: password2,
+            };
+    
+            dispatch(register(data));
         }
 
 
-        const data = {
-            email: email,
-            password1: password1,
-            password2: password2,
-        };
-
+        
+        /*
         axios
             .post("http://localhost:5555/user", data)
             .then(() => {
@@ -36,12 +60,13 @@ const SignUp = () => {
                 alert("An error happend. Please check console.");
                 console.log(error);
             });
+        */
     };
 
 
     return (
         <div>
-            <NavBar />
+           { /*<NavBar />*/}
             <div className="home">
                 <div className="form_container">
                     {/* Sign Up Form */}
@@ -74,7 +99,7 @@ const SignUp = () => {
 
                             <button className="button" onClick={handleSaveBook}>Sign Up</button>
                             <div className="login_signup">Already have an account?
-                                <Link to="/"> Login</Link>
+                                <Link to="/user"> Login</Link>
                             </div>
                         </form>
                     </div>

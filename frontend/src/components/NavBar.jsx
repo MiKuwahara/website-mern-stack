@@ -1,14 +1,30 @@
 import React, { useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from '../features/auth/authSlice';
 import "../App.css";
 
 const NavBar = () => {
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth)
   const { id } = useParams();
 
+  const onLogout = () => {
+    dispatch(logout()); // delete in localStorage
+    dispatch(reset()); // reset state back to initial values
+    console.log("logout")
+    navigate("/");
+    console.log("logout2")
+  };
+
+  /*
   useEffect(() => {
-    console.log({id});
+    console.log({ id });
   }, []);
+*/
+    
 
   return (
     <header className="header">
@@ -24,9 +40,19 @@ const NavBar = () => {
           </li>
         </ul>
 
-        <Link to="/signup">
-          <button class="button">Sign Up</button>
-        </Link>
+        {user ? (
+          <button class="button" onClick={onLogout}>Log Out</button>
+
+        ) : (
+          <div className="login-signup-btn">
+            <Link to="/">
+              <button class="button login-btn">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button class="button">Sign Up</button>
+            </Link>
+          </div>
+        )}
 
       </nav>
     </header>

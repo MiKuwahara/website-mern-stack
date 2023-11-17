@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar.jsx';
 import { Link, useNavigate } from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux"
 import axios from "axios";
 
 
@@ -10,6 +11,14 @@ const User = () => {
     const [password2, setPassword2] = useState("");
     const navigate = useNavigate();
 
+    const {user} = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if(!user){
+            navigate("/user")
+        }
+    }, [user, navigate]);
+    /*
     const handleSaveBook = () => {
 
 
@@ -38,13 +47,13 @@ const User = () => {
             });
     };
 
-
+    */
     return (
         <div>
-            <NavBar />
+            {/*<NavBar />*/}
             <div className="home">
                <div className="user">
-                <h1>Welcome!</h1>
+                <h1>Welcome {user && user.email}!</h1>
                </div>
             </div>
         </div>

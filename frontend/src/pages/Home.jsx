@@ -1,13 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar.jsx';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+
+import {useSelector, useDispatch} from "react-redux"
+
+
+import { login, reset} from "../features/auth/authSlice.js"
+
 
 
 const Home = () => {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+
+     // execute when any of the dependencies changes
+     useEffect(() => {
+        if(isError){
+            return alert(message);
+        }
+
+        if(isSuccess || user){
+            navigate("/");
+        }
+
+        dispatch(reset());
+
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const handleSaveBook = () => {
 
@@ -16,6 +40,8 @@ const Home = () => {
             password1: password1,
         };
 
+        dispatch(login(data));
+        /*
         axios
             .post("http://localhost:5555/user/login", data)
             .then((result) => {
@@ -25,7 +51,7 @@ const Home = () => {
                     navigate("/user");
                 }else{
                     alert(result.data);
-                    {/*navigate("/users/account")*/ }
+                    {/*navigate("/users/account")*//* }
                 }
                
             })
@@ -33,12 +59,13 @@ const Home = () => {
                 alert("An error happend. Please check console.");
                 console.log(error);
             });
+        */
     };
 
 
     return (
         <div>
-            <NavBar />
+
             <div className="home">
                 <div className="form_container">
                     {/* Login Form */}
