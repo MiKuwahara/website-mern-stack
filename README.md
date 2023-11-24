@@ -58,19 +58,20 @@ Click the link in the terminal to see the project on the web browser.
 ## Technologies Used
 
 Frontend
-* React.JS
+* React.js
 * JavaScript
 * HTML/CSS
 * Axios
 * React-Router-Dom
 
 Backend
-* Express.JS
+* Express.js
 * Node.js
 * Mongoose
 * Cors
 * Nodemon
 * Postman
+* Bcrypt.js
 
 Database
 * MongoDB

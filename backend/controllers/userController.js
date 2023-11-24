@@ -72,6 +72,7 @@ const loginUser = async (request, response) => {
         // AUTHENTICATE
         // if user exists and password sent is the same as in the database
         // then login
+        // Decrypt password
         if(user && (await bcrypt.compare(password1, user.password1))){
             response.status(201).json({
                 _id: user.id,
