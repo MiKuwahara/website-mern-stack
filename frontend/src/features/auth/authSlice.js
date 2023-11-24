@@ -76,6 +76,7 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false // Was not in the tutorial. Added this myself so that user can successfully login after inputing correct from wrong credentials. Otherwise, in the Home useEffect, for example, we would not go pass the first guard since isError is true. So we would not navigate to / and reset initial states via dispatch. NEED TO CHECK OTHER CASES AS WELL FOR STATE CORRECTIONS 
                 state.user = action.payload
             })
             .addCase(login.rejected, (state, action) => {
